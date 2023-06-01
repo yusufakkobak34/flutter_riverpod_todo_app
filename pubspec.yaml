@@ -39,6 +39,7 @@ dependencies:
   flutter_provider: ^2.1.0
   provider: ^6.0.5
   riverpod: ^2.3.6
+  flutter_riverpod: ^2.3.6
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_todo_app/view/home/home_page.dart';
 
 void main() {
@@ -10,11 +11,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'To-Do App With Riverpod SM',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
-      home: const HomePageScreen(),
+    return ProviderScope(
+      child: MaterialApp(
+        title: 'To-Do App With Riverpod SM',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(),
+        home: const HomePageScreen(),
+      ),
     );
   }
 }
