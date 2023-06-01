@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:riverpod_todo_app/constants/app_style.dart';
+import 'package:riverpod_todo_app/widget/custom_radio_widget.dart';
 import 'package:riverpod_todo_app/widget/text_field_widget.dart';
 
 class AddNewTaskModel extends StatelessWidget {
@@ -49,19 +50,24 @@ class AddNewTaskModel extends StatelessWidget {
             const TextFieldWidget(maxLine: 5, hintText: 'Açıklama Ekleyin'),
             const Gap(12),
             const Text("Kategori", style: AppStyle.headingOne),
-            RadioListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Transform.translate(
-                offset: const Offset(-22, 0),
-                child: const Text("LRN"),
-              ),
-              value: 1,
-              groupValue: 0,
-              onChanged: (value) {}
+            Row(
+              children: [
+                const Expanded(
+                  child: RadioWidget(titleRadio: "LRN", categColor: Colors.green),
+                ),
+                Expanded(
+                  child: RadioWidget(titleRadio: "WRK", categColor: Colors.blue.shade700),
+                ),
+                Expanded(
+                  child: RadioWidget(titleRadio: "LRN", categColor: Colors.amberAccent.shade700),
+                ),
+              ],
             )
         ],
       ),
     );
   }
 }
+
+
 
