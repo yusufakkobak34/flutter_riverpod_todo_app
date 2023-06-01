@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:riverpod_todo_app/constants/app_style.dart';
+import 'package:riverpod_todo_app/widget/text_field_widget.dart';
 
 class AddNewTaskModel extends StatelessWidget {
   const AddNewTaskModel({
@@ -34,13 +36,32 @@ class AddNewTaskModel extends StatelessWidget {
             thickness: 1.2,
             color: Colors.grey.shade200,
           ),
+          const Gap(12),
           const Text(
             "Görev Başlığı",
-            style: AppStyle.headingStyle,
+            style: AppStyle.headingOne,
             ),
-          const TextField(),
+            const Gap(6),
+            const TextFieldWidget(maxLine: 1, hintText: "Görev Adı Ekleyin"),
+            const Gap(12),
+            const Text("Açıklama", style: AppStyle.headingOne),
+            const Gap(6),
+            const TextFieldWidget(maxLine: 5, hintText: 'Açıklama Ekleyin'),
+            const Gap(12),
+            const Text("Kategori", style: AppStyle.headingOne),
+            RadioListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Transform.translate(
+                offset: const Offset(-22, 0),
+                child: const Text("LRN"),
+              ),
+              value: 1,
+              groupValue: 0,
+              onChanged: (value) {}
+            )
         ],
       ),
     );
   }
 }
+
