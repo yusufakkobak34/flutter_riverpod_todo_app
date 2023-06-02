@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:riverpod_todo_app/constants/app_style.dart';
+import 'package:riverpod_todo_app/provider/date_time_provider.dart';
 import 'package:riverpod_todo_app/provider/radio_provider.dart';
 import 'package:riverpod_todo_app/widget/custom_radio_widget.dart';
 import 'package:riverpod_todo_app/widget/date_time_widget.dart';
@@ -15,6 +16,7 @@ class AddNewTaskModel extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final dateProv = ref.watch(dateProvider);
     return Container(
       padding: const EdgeInsets.all(30),
       height: MediaQuery.of(context).size.height * 0.70,
@@ -82,22 +84,27 @@ class AddNewTaskModel extends ConsumerWidget {
               ),
             ],
           ),
-         SizedBox(height: 25),
+          const SizedBox(height: 25),
 
           // Date & Time Option
-           Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               DateTimeWidget(
                 titleText: "Tarih",
-                valueText: "dd/mm/yyyy",
+                valueText: dateProv,
                 iconSection: CupertinoIcons.calendar,
-                onTap: () => showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime(2021),
-                  lastDate: DateTime(2025),
-                  )
+                onTap: () async {
+                  final getValue = showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2021),
+                    lastDate: DateTime(2025),
+                  );
+                  if (getValue != null) {
+                    print(getValue.toString());
+                  }
+                },
               ),
               const Gap(22),
               DateTimeWidget(
@@ -107,12 +114,12 @@ class AddNewTaskModel extends ConsumerWidget {
                 onTap: () => showTimePicker(
                   context: context,
                   initialTime: TimeOfDay.now(),
-                  ),
+                ),
               ),
             ],
           ),
-          SizedBox(height: 25),
-  
+          const SizedBox(height: 25),
+
           //Button Section
           const Gap(12),
           Row(
