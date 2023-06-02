@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:riverpod_todo_app/common/show_model.dart';
 import 'package:riverpod_todo_app/common/app_bar/custom_app_bar.dart';
+import 'package:riverpod_todo_app/widget/card_to_do_widget.dart';
 
 class HomePageScreen extends StatelessWidget {
   const HomePageScreen({super.key});
@@ -62,6 +63,12 @@ class HomePageScreen extends StatelessWidget {
                   child: const Text("+ Yeni Görev"),
                 )
               ],
+            ),
+            const Gap(20),
+            ListView.builder(
+              itemCount: 1,
+              shrinkWrap: true,
+              itemBuilder: (context, index) => const CardToDoWidget(),
             )
           ],
         ),
@@ -70,4 +77,6 @@ class HomePageScreen extends StatelessWidget {
     );
   }
 }
+
+
 
