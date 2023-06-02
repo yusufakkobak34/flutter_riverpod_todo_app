@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:intl/intl.dart';
 import 'package:riverpod_todo_app/constants/app_style.dart';
 import 'package:riverpod_todo_app/provider/date_time_provider.dart';
 import 'package:riverpod_todo_app/provider/radio_provider.dart';
@@ -84,7 +85,6 @@ class AddNewTaskModel extends ConsumerWidget {
               ),
             ],
           ),
-          const SizedBox(height: 25),
 
           // Date & Time Option
           Row(
@@ -95,14 +95,17 @@ class AddNewTaskModel extends ConsumerWidget {
                 valueText: dateProv,
                 iconSection: CupertinoIcons.calendar,
                 onTap: () async {
-                  final getValue = showDatePicker(
+                  final getValue = await showDatePicker(
                     context: context,
                     initialDate: DateTime.now(),
                     firstDate: DateTime(2021),
                     lastDate: DateTime(2025),
                   );
                   if (getValue != null) {
-                    print(getValue.toString());
+                    final format = DateFormat.yMd();
+                    ref
+                        .read(dateProvider.notifier)
+                        .update((state) => format.format(getValue));
                   }
                 },
               ),
@@ -118,7 +121,6 @@ class AddNewTaskModel extends ConsumerWidget {
               ),
             ],
           ),
-          const SizedBox(height: 25),
 
           //Button Section
           const Gap(12),
