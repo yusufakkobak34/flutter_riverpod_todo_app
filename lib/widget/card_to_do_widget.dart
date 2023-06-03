@@ -56,7 +56,7 @@ class CardToDoWidget extends StatelessWidget {
                             thickness: 1.5,
                             color: Colors.grey.shade200,
                           ),
-                           Row(
+                           const Row(
                             children: [
                               Text("Today"),
                               Gap(12),
