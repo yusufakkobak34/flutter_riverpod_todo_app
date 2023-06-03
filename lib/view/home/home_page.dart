@@ -5,10 +5,7 @@ import 'package:riverpod_todo_app/common/app_bar/custom_app_bar.dart';
 import 'package:riverpod_todo_app/widget/card_to_do_widget.dart';
 
 class HomePageScreen extends StatelessWidget {
-  HomePageScreen({Key? key}) : super(key: key);
-
-  final titleController = TextEditingController();
-  final descriptionController = TextEditingController();
+  const HomePageScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +57,7 @@ class HomePageScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(16),
                       ),
                       context: context,
-                      builder: (context) => const AddNewTaskModel(),
+                      builder: (context) => AddNewTaskModel(),
                     ),
                     child: const Text("+ Yeni Görev"),
                   )

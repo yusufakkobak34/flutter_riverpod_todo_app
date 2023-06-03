@@ -11,9 +11,12 @@ import 'package:riverpod_todo_app/widget/date_time_widget.dart';
 import 'package:riverpod_todo_app/widget/text_field_widget.dart';
 
 class AddNewTaskModel extends ConsumerWidget {
-  const AddNewTaskModel({
+   AddNewTaskModel({
     super.key,
   });
+
+  final titleController = TextEditingController();
+  final descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -50,11 +53,11 @@ class AddNewTaskModel extends ConsumerWidget {
             style: AppStyle.headingOne,
           ),
           const Gap(6),
-          const TextFieldWidget(maxLine: 1, hintText: "Görev Adı Ekleyin"),
+          TextFieldWidget(maxLine: 1, hintText: "Görev Adı Ekleyin",txtController: titleController,),
           const Gap(12),
           const Text("Açıklama", style: AppStyle.headingOne),
           const Gap(6),
-          const TextFieldWidget(maxLine: 5, hintText: 'Açıklama Ekleyin'),
+          TextFieldWidget(maxLine: 5, hintText: 'Açıklama Ekleyin',txtController: descriptionController,),
           const Gap(12),
           const Text("Kategori", style: AppStyle.headingOne),
           Row(
