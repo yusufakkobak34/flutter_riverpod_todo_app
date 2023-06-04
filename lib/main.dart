@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         title: 'To-Do App With Riverpod SM',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(),
-        home: HomePageScreen(),
+        home: const HomePageScreen(),
       ),
     );
   }

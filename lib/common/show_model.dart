@@ -4,14 +4,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_todo_app/constants/app_style.dart';
+import 'package:riverpod_todo_app/model/todo_model.dart';
 import 'package:riverpod_todo_app/provider/date_time_provider.dart';
 import 'package:riverpod_todo_app/provider/radio_provider.dart';
+import 'package:riverpod_todo_app/provider/service_provider.dart';
 import 'package:riverpod_todo_app/widget/custom_radio_widget.dart';
 import 'package:riverpod_todo_app/widget/date_time_widget.dart';
 import 'package:riverpod_todo_app/widget/text_field_widget.dart';
 
 class AddNewTaskModel extends ConsumerWidget {
-   AddNewTaskModel({
+  AddNewTaskModel({
     super.key,
   });
 
@@ -53,11 +55,19 @@ class AddNewTaskModel extends ConsumerWidget {
             style: AppStyle.headingOne,
           ),
           const Gap(6),
-          TextFieldWidget(maxLine: 1, hintText: "Görev Adı Ekleyin",txtController: titleController,),
+          TextFieldWidget(
+            maxLine: 1,
+            hintText: "Görev Adı Ekleyin",
+            txtController: titleController,
+          ),
           const Gap(12),
           const Text("Açıklama", style: AppStyle.headingOne),
           const Gap(6),
-          TextFieldWidget(maxLine: 5, hintText: 'Açıklama Ekleyin',txtController: descriptionController,),
+          TextFieldWidget(
+            maxLine: 5,
+            hintText: 'Açıklama Ekleyin',
+            txtController: descriptionController,
+          ),
           const Gap(12),
           const Text("Kategori", style: AppStyle.headingOne),
           Row(
@@ -166,7 +176,32 @@ class AddNewTaskModel extends ConsumerWidget {
                     ),
                     padding: const EdgeInsets.symmetric(vertical: 14),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    final getRadioValue = ref.read(radioProvider);
+                    String category = '';
+
+                    switch (getRadioValue) {
+                      case 1:
+                        category = "Learning";
+                        break;
+                      case 2:
+                        category = 'Working';
+                        break;
+                      case 3:
+                        category = 'General';
+                        break;
+                    }
+
+                    ref.read(serviceProvider).addNewTask(TodoModel(
+                          titleTask: titleController.text,
+                          description: descriptionController.text,
+                          category: category,
+                          dateTask: ref.read(dateProvider),
+                          timeTask: ref.read(timeProvider),
+                        ));
+                    print('Data is saving');
+                    Navigator.pop(context);
+                  },
                   child: const Text("Oluştur"),
                 ),
               ),
