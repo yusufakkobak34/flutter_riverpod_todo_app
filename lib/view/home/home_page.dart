@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:riverpod_todo_app/common/show_model.dart';
 import 'package:riverpod_todo_app/common/app_bar/custom_app_bar.dart';
 import 'package:riverpod_todo_app/widget/card_to_do_widget.dart';
 
-class HomePageScreen extends StatelessWidget {
- const HomePageScreen({Key? key}) : super(key: key);
+class HomePageScreen extends ConsumerWidget {
+  HomePageScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final todoData = ref.watch(fetchDataProvider);
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       appBar: const PreferredSize(
@@ -67,7 +69,8 @@ class HomePageScreen extends StatelessWidget {
               ListView.builder(
                 itemCount: 1,
                 shrinkWrap: true,
-                itemBuilder: (context, index) => const CardToDoWidget(),
+                itemBuilder: (context, index) =>
+                    CardToDoWidget(getIndex: index),
               )
             ],
           ),
