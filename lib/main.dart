@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_todo_app/firebase_options.dart';
 import 'package:riverpod_todo_app/view/home/home_page.dart';
 
+// Project Finished.  
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
