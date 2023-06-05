@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:riverpod_todo_app/common/show_model.dart';
 import 'package:riverpod_todo_app/common/app_bar/custom_app_bar.dart';
+import 'package:riverpod_todo_app/provider/service_provider.dart';
 import 'package:riverpod_todo_app/widget/card_to_do_widget.dart';
 
 class HomePageScreen extends ConsumerWidget {
@@ -10,6 +11,7 @@ class HomePageScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final todoData = ref.watch(fetchStreamProvider);
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       appBar: const PreferredSize(
@@ -66,7 +68,7 @@ class HomePageScreen extends ConsumerWidget {
               ),
               const Gap(20),
               ListView.builder(
-                itemCount: 1,
+                itemCount: todoData.value!.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) =>
                     CardToDoWidget(getIndex: index),
