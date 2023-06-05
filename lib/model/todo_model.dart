@@ -37,7 +37,7 @@ class TodoModel {
       category: map['category'] as String,
       dateTask: map['dateTask'] as String,
       timeTask: map['timeTask'] as String,
-      isDone:  map['isDone'] as bool,
+      isDone: map['isDone'] as bool,
     );
   }
 

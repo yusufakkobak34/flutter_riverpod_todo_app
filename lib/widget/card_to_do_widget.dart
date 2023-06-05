@@ -13,9 +13,9 @@ class CardToDoWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final todoData = ref.watch(fetchDataProvider);
+    final todoData = ref.watch(fetchStreamProvider);
     return todoData.when(
-      data: (todoData) => Container(
+        data: (todoData) => Container(
       width: double.infinity,
       height: 120,
       decoration: BoxDecoration(
@@ -65,8 +65,8 @@ class CardToDoWidget extends ConsumerWidget {
                           ),
                            Row(
                             children: [
-                              Text("Today"),
-                              Gap(12),
+                              const Text("Today"),
+                              const Gap(12),
                               Text(todoData[getIndex].timeTask),
                             ],
                           ),
@@ -81,11 +81,11 @@ class CardToDoWidget extends ConsumerWidget {
         ],
       ),
     ),
-      error: (error,stackTrace) => const Center(
-        child: Text('Hata'),
-      ),
-      loading: () => const Center(
-        child: CircularProgressIndicator(),
-      ));
+        error: (error, stackTrace) => Center(
+              child: Text(stackTrace.toString()),
+            ),
+        loading: () => const Center(
+              child: CircularProgressIndicator(),
+            ));
   }
 }

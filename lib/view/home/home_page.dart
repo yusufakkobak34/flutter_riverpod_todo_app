@@ -6,11 +6,10 @@ import 'package:riverpod_todo_app/common/app_bar/custom_app_bar.dart';
 import 'package:riverpod_todo_app/widget/card_to_do_widget.dart';
 
 class HomePageScreen extends ConsumerWidget {
-  HomePageScreen({Key? key}) : super(key: key);
+  const HomePageScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final todoData = ref.watch(fetchDataProvider);
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       appBar: const PreferredSize(
